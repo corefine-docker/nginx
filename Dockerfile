@@ -23,8 +23,11 @@ RUN set -x \
                 findutils \
        && chown -R nobody:nobody /src \
        && /src/nginx/make.sh \
+       && cp /usr/lib/libpcre.so.1 /src/nginx/libpcre.so.1 \
        && apk del .build-deps \
+       && cp /src/nginx/libpcre.so.1 /usr/lib/libpcre.so.1 \
        && rm -rf /src \
+       && echo build is over!
 EXPOSE 80
 STOPSIGNAL SIGQUIT
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
