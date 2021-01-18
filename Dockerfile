@@ -29,8 +29,6 @@ RUN set -x \
        && rm -rf /src \
        && apk add bash \
        && echo build is over!
-ADD bin/* /usr/bin/
-ADD lib/* /usr/lib/
 RUN mkdir /etc/nginx/ssl
 RUN mkdir /etc/nginx/stream.d
 RUN echo "stream {" >> /etc/nginx/nginx.conf
