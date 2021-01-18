@@ -28,13 +28,14 @@ RUN set -x \
        && cp /src/nginx/libpcre.so.1 /usr/lib/libpcre.so.1 \
        && rm -rf /src \
        && apk add bash \
+       && mkdir /etc/nginx/upstream.d \
+       && mkdir /etc/nginx/ssl \
+       && mkdir /etc/nginx/stream.d \
+       && echo "stream {" >> /etc/nginx/nginx.conf \
+       && echo "    include /etc/nginx/stream.d/*.conf;" >> /etc/nginx/nginx.conf \
+       && echo "}" >> /etc/nginx/nginx.conf \
+       && \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
        && echo build is over!
-RUN mkdir /etc/nginx/ssl
-RUN mkdir /etc/nginx/stream.d
-RUN echo "stream {" >> /etc/nginx/nginx.conf
-RUN echo "    include /etc/nginx/stream.d/*.conf;" >> /etc/nginx/nginx.conf
-RUN echo "}" >> /etc/nginx/nginx.conf
-RUN \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 EXPOSE 80
 STOPSIGNAL SIGQUIT
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
