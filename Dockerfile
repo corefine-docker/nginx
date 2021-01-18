@@ -34,7 +34,6 @@ RUN set -x \
        && echo "stream {" >> /etc/nginx/nginx.conf \
        && echo "    include /etc/nginx/stream.d/*.conf;" >> /etc/nginx/nginx.conf \
        && echo "}" >> /etc/nginx/nginx.conf \
-       && \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
        && echo build is over!
 EXPOSE 80
 STOPSIGNAL SIGQUIT
