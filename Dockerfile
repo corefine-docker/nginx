@@ -27,6 +27,7 @@ RUN set -x \
        && apk del .build-deps \
        && cp /src/nginx/libpcre.so.1 /usr/lib/libpcre.so.1 \
        && rm -rf /src \
+       && apk add bash \
        && echo build is over!
 EXPOSE 80
 STOPSIGNAL SIGQUIT
